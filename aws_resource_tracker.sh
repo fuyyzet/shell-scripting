@@ -14,13 +14,15 @@
 # AWS Lambda
 # AWS IAM Users
 
+set -x
+
 # list s3 buckets
-echo "Print list of s3 buckets"
 aws s3 ls
 
-set -x
+
 # list EC2 Instances
-aws ec2 describe-instances
+aws ec2 describe-instances | jq '.Reservations[].Instances[].InstanceId'
+
 
 # list lambda
 aws lambda list-functions
